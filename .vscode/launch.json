@@ -1,0 +1,60 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "PowerShell",
+            "request": "launch",
+            "name": "PowerShell Launch Current File",
+            "script": "${file}",
+            "args": [],
+            "cwd": "${file}"
+        },
+        {
+            "name": "UnifaceGetObjectsChangedIds",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Compile-UnifaceGetObjectsChangedIds",
+            "program": "${workspaceFolder}/UnifaceGetObjectsChangedIds/bin/Debug/netcoreapp2.0/UnifaceGetObjectsChangedIds.dll",
+            "args": ["-d", "Server=AUADWLG02;Initial Catalog=PthHackRep;User Id=admin; Password=password;", "--sinceversion", "0"],
+            "cwd": "${workspaceRoot}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "UnifaceGetAllObjectIds",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Compile-UnifaceGetAllObjectIds",
+            "program": "${workspaceFolder}/UnifaceGetAllObjectIds/bin/Debug/netcoreapp2.0/UnifaceGetAllObjectIds.dll",
+            "args": ["-d", "Server=AUADWLG02;Initial Catalog=PthHackRep;User Id=admin; Password=password;"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": "UnifacePullObject",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Compile-UnifacePullObject",
+            "program": "${workspaceFolder}/UnifacePullObject/bin/Debug/netcoreapp2.0/UnifacePullObject.dll",
+            "args": [
+                "-d", "Server=AUADWLG02;Initial Catalog=PthHackRep;User Id=admin; Password=password;", 
+                // "-o", "form/admlib/ABKC7000", 
+                "-c", "C:\\Temp\\Uniface"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}

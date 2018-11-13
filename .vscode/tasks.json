@@ -1,0 +1,84 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile-UnifaceGetAllObjectIds",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/UnifaceGetAllObjectIds/UnifaceGetAllObjectIds.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Compile-UnifacePullObject",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/UnifacePullObject/UnifacePullObject.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Compile-UnifaceGetObjectsChangedIds",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/UnifaceGetObjectsChangedIds/UnifaceGetObjectsChangedIds.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Compile-UnifaceGetAllObjectIds-Release",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/UnifaceGetAllObjectIds/UnifaceGetAllObjectIds.csproj",
+                "-c",
+                "release",
+                "-o",
+                "${workspaceFolder}/Scripts/bin",
+            ],
+            "group": "test",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Compile-UnifacePullObject-Release",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/UnifacePullObject/UnifacePullObject.csproj",
+                "-c",
+                "release",
+                "-o",
+                "${workspaceFolder}/Scripts/bin",
+            ],
+            "group": "test",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Compile-UnifaceGetObjectsChangedIds-Release",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/UnifaceGetObjectsChangedIds/UnifaceGetObjectsChangedIds.csproj",
+                "-c",
+                "release",
+                "-o",
+                "${workspaceFolder}/Scripts/bin",
+            ],
+            "group": "test",
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
