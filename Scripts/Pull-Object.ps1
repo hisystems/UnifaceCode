@@ -1,7 +1,7 @@
 # Pull one Uniface object to the local directory
 param
 (
-   [Parameter(Mandatory=$true,HelpMessage="Type/Library/ObjectName")]
+   [Parameter(Mandatory=$true, HelpMessage="Type/Library/ObjectName")]
    [string]$objectId    
 )
 
