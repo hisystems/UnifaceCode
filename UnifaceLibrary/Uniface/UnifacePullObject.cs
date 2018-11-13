@@ -133,8 +133,13 @@ namespace UnifaceLibrary
 
             using (var reader = dumpSegmentsCommand.ExecuteReader())
             {
-                while (reader.Read())
+                while (reader.Read()){
+                    // Remove the `Next Segment ID` 4 bytes from the end of the last added segment (not applicable for the last line).
+                    if (sourceCode.Length > 0)
+                        sourceCode.Remove(sourceCode.Length - 4 - 1, 4);
+
                     sourceCode.Append(reader["data"].ToString());
+                }
             }
 
             return new ObjectData(objectData, sourceCode);
