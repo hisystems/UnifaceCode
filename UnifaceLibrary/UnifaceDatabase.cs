@@ -29,7 +29,7 @@ namespace UnifaceLibrary
         {
             foreach (var type in UnifaceObjectType.All)
             {
-                var tableSource = type.TableSource;
+                var tableSource = type.SourceCode;
                 var command = new SqlCommand($"SELECT * FROM {tableSource.PrimaryTable} WHERE {tableSource.TypeFilter}", _connection);
 
                 using (var reader = command.ExecuteReader())
@@ -44,7 +44,7 @@ namespace UnifaceLibrary
         {
             foreach (var type in UnifaceObjectType.All)
             {
-                var tableSource = type.TableSource;
+                var tableSource = type.SourceCode;
                 var command = new SqlCommand(
                     $"SELECT CT.SYS_CHANGE_OPERATION AS SYS_CHANGE_OPERATION, {tableSource.PrimaryTable}.* FROM {tableSource.PrimaryTable} " + 
                     $"INNER JOIN CHANGETABLE(CHANGES {tableSource.PrimaryTable}, {sinceVersion}) CT ON {tableSource.PrimaryTable}.{tableSource.IdField} = CT.{tableSource.IdField} " +
@@ -76,7 +76,7 @@ namespace UnifaceLibrary
 
         private static UnifaceObjectId GetUnifaceObjectId(SqlDataReader reader, UnifaceObjectType type)
         {
-            return new UnifaceObjectId(type, reader[type.TableSource.LibraryField].ToString(), reader[type.TableSource.IdField].ToString());
+            return new UnifaceObjectId(type, reader[type.SourceCode.LibraryField].ToString(), reader[type.SourceCode.IdField].ToString());
         }
 
         public void Dispose()

@@ -12,6 +12,7 @@ Specifically, supports;
 
 * Downloading to a .uni file:
     * Forms
+    * Entities
     * Services
     * Message
     * Proc

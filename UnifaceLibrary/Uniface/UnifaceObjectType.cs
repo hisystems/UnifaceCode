@@ -5,22 +5,24 @@ namespace UnifaceLibrary
 {
     public sealed class UnifaceObjectType
     {
-        public static UnifaceObjectType Form { get; } = new UnifaceObjectType("Form");
-        public static UnifaceObjectType Service { get; } = new UnifaceObjectType("Service");
-        public static UnifaceObjectType Message { get; } = new UnifaceObjectType("Message");
-        public static UnifaceObjectType Procedure { get; } = new UnifaceObjectType("Proc");
-        public static UnifaceObjectType IncludeProcedure { get; } = new UnifaceObjectType("IncludeProc");
+        public static UnifaceObjectType Form { get; } = new UnifaceObjectType("Form", new UnifaceFormSourceCode());
+        public static UnifaceObjectType Service { get; } = new UnifaceObjectType("Service", new UnifacePrimarySourceCode("uform", codeField: "tplactual", libraryField: "librar", typeFilter: "uform.utransact = 1"));
+        public static UnifaceObjectType Entity { get; } = new UnifaceObjectType("Entity", new UnifaceEntitySourceCode());
+        public static UnifaceObjectType Message { get; } = new UnifaceObjectType("Message", new UnifacePrimarySourceCode("usource", codeField: "ucomment", libraryField: "uvar", typeFilter: "usource.usub = 'M' AND usource.uvar = 'SCA'"));
+        public static UnifaceObjectType Procedure { get; } = new UnifaceObjectType("Proc", new UnifacePrimarySourceCode("usource", codeField: "ucomment", libraryField: "uvar", typeFilter: "usource.usub = 'P'"));
+        public static UnifaceObjectType IncludeProcedure { get; } = new UnifaceObjectType("IncludeProc", new UnifacePrimarySourceCode("usource", codeField: "ucomment", libraryField: "uvar", typeFilter: "usource.usub = 'I'") );
 
-        public static UnifaceObjectType[] All { get; } = new[] { Form, Service, Message, Procedure, IncludeProcedure };
+        public static UnifaceObjectType[] All { get; } = new[] { Form, Service, Entity, Message, Procedure, IncludeProcedure };
 
         public string Name { get; private set; }
 
-        private UnifaceObjectType(string name)
+        internal IUnifaceSourceCode SourceCode { get; private set; }
+
+        private UnifaceObjectType(string name, IUnifaceSourceCode sourceCode)
         {
             Name = name;
+            SourceCode = sourceCode;
         }
-
-        public UnifaceObjectTypeTableSource TableSource => UnifaceObjectTypeTableSource.Get(this);
 
         public static UnifaceObjectType Get(string type)
         {
